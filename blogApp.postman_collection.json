@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "65b9ed3f-4b2f-4900-b04b-01104acb99d2",
+		"name": "blogApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8b168596-136a-41aa-8cc0-78c680b6f0aa",
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    pm.environment.set(\"authToken\", pm.response.json().token)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"me@alicankalkan.com\",\n\t\"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "87555d67-60fb-4400-b37f-9a911cfc5557",
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    pm.environment.set(\"authToken\", pm.response.json().token)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"me@alicankalkan.com\",\n\t\"password\": \"123456\",\n\t\"name\": \"Alican Kalkan\",\n\t\"biography\": \"Çılgın Developer\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/add",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/delete/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"delete",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"me@alicankalkan.com\",\n\t\"password\": \"123456\",\n\t\"name\": \"Alican Kalkan -1\",\n\t\"biography\": \"Çılgın Developer -1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/user/update/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"update",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Get a Category and has Blogs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/category/yazilim",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"category",
+								"yazilim"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Proje Yönetimi\",\n\t\"description\": \"Proje Yönetimi ile ilgili yazılarımı burada paylaşıyorum.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/category/add",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"category",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Güncellendi\",\n\t\"description\": \"Yareni çok sevdiği çok belli. 3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/category/update/5ec10f2d31f4551ac82f9bac",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"category",
+								"update",
+								"5ec10f2d31f4551ac82f9bac"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/category/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"category",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/category/delete/5ec0ff7dd10567193f438526",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"category",
+								"delete",
+								"5ec0ff7dd10567193f438526"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Blog",
+			"item": [
+				{
+					"name": "Add a Blog",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Alican'ın ilk Blogu\",\n\t\"description\": \"Alicanın ilk blog açıklaması\",\n\t\"category\": \"5ec10f3531f4551ac82f9bad\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/blog/add",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"blog",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Blog",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/blog/alicanin-ilk-blogu-2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"blog",
+								"alicanin-ilk-blogu-2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Blog",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Alican'ın ilk Blogu -9\",\n\t\"description\": \"Alicanın ilk blog açıklaması -3\",\n\t\"category\": \"5ec10f3531f4551ac82f9bad\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/blog/update/5ec112d92949c81be5e8808c",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"blog",
+								"update",
+								"5ec112d92949c81be5e8808c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Blog",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Alican'ın ilk Blogu -1\",\n\t\"description\": \"Alicanın ilk blog açıklaması -1\",\n\t\"category\": \"5ec10f3531f4551ac82f9bad\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/blog/delete/5ec112d92949c81be5e8808c",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"blog",
+								"delete",
+								"5ec112d92949c81be5e8808c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Blog",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/blog/alicanin-ilk-blogu-9",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"blog",
+								"alicanin-ilk-blogu-9"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "10d801bc-549a-4f13-b064-8fd8b586c38b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d13de653-ad9c-4475-9f4b-251e44e95d04",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
